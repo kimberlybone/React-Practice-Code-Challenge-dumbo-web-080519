@@ -1,23 +1,29 @@
-import React, { Fragment } from 'react'
+import React, {Fragment} from 'react'
 
 const Sushi = (props) => {
+
+  let images = props.sushi.img_url
+  let sushi = props.sushi
+
   return (
-    <div className="sushi">
-      <div className="plate" 
-           onClick={/* Give me a callback! */ null}>
-        { 
-          /* Tell me if this sushi has been eaten! */ 
-          true ?
-            null
-          :
-            <img src={/* Give me an image source! */} width="100%" />
-        }
+    <Fragment>
+      <div className="sushi">
+        <div className="plate"
+          onClick={() => props.eat(sushi)}>
+          {
+            props.eatenSushi.includes(sushi) ?
+              null
+              :
+              <img src={images} width="100%" alt="sushi"/>
+          }
+        </div>
+        <h4 className="sushi-details">
+          <p>{sushi.name}</p>
+          ${sushi.price}
+        </h4>
       </div>
-      <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
-      </h4>
-    </div>
-  )
+    </Fragment>
+    )
 }
 
 export default Sushi
